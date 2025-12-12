@@ -3,195 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页</title>
-    <!-- 引入字体图标库 (Font Awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>我的个人主页 | Home</title>
     <style>
-        /* 全局样式 */
+        /* --- CSS 样式部分 --- */
         :root {
-            --bg-color: #0d1117; /* GitHub 暗色背景 */
-            --text-color: #c9d1d9;
-            --accent-color: #58a6ff;
-            --card-bg: #161b22;
-            --border-color: #30363d;
+            --bg-color: #0f172a;
+            --card-color: rgba(30, 41, 59, 0.7);
+            --text-color: #f1f5f9;
+            --accent-color: #38bdf8;
+            --hover-color: #0ea5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* 动态背景动画 */
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
-            padding: 40px 20px;
+            text-align: center;
+            background: var(--card-color);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 1s ease-out;
         }
 
-        /* 头部区域 */
-        header {
-            text-align: center;
-            margin-bottom: 50px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .avatar {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 4px solid var(--border-color);
+            border: 3px solid var(--accent-color);
             margin-bottom: 20px;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
         }
 
         h1 {
-            color: #fff;
-            margin: 10px 0;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
-        .bio {
-            color: #8b949e;
-            font-size: 1.1em;
-        }
-
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: var(--text-color);
-            font-size: 24px;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
+        .typing-effect {
             color: var(--accent-color);
-        }
-
-        /* 项目展示区 */
-        .section-title {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .project-card h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-        }
-
-        .project-card p {
-            font-size: 0.9em;
-            color: #8b949e;
-        }
-
-        .repo-link {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 0.9em;
             font-weight: bold;
+            font-family: monospace;
+            font-size: 1.1rem;
+            min-height: 1.5em;
+            margin-bottom: 30px;
         }
 
-        .repo-link:hover {
-            text-decoration: underline;
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* 底部 */
+        .btn {
+            display: block;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--hover-color);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+            border-color: var(--hover-color);
+        }
+
         footer {
-            text-align: center;
-            margin-top: 60px;
-            font-size: 0.8em;
-            color: #8b949e;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- 头部个人信息 -->
-        <header>
-            <!-- 请替换下面的图片链接为你自己的GitHub头像链接 -->
-            <img src="https://github.com/github.png" alt="头像" class="avatar">
-            <h1>你的名字 / GitHub ID</h1>
-            <p class="bio">热爱编程 | 全栈开发者 | 开源爱好者</p>
-            
-            <div class="social-links">
-                <a href="https://github.com/你的用户名" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:你的邮箱@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fas fa-blog"></i></a>
-            </div>
-        </header>
+        <!-- 头像：如果不显示，请确保 links 是正确的，或者直接用 github 头像 -->
+        <img src="https://github.com/3804445492l.png" alt="Avatar" class="avatar">
+        
+        <h1>你好，我是 3804445492l</h1>
+        
+        <!-- 打字机特效文字容器 -->
+        <div class="typing-effect" id="typing-text"></div>
 
-        <!-- 项目展示 -->
-        <section>
-            <h2 class="section-title">我的项目</h2>
-            <div class="projects-grid">
-                
-                <!-- 项目卡片 1 -->
-                <div class="project-card">
-                    <h3>Awesome Project</h3>
-                    <p>这是一个很酷的 Python 数据分析工具，可以自动化处理 Excel 表格。</p>
-                    <div style="margin-top: 10px;">
-                        <span style="color: #f1e05a; font-size: 0.8em;">● JavaScript</span>
-                    </div>
-                    <a href="#" class="repo-link">查看源码 <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- 项目卡片 2 -->
-                <div class="project-card">
-                    <h3>Personal Blog</h3>
-                    <p>基于 Hugo 搭建的静态博客主题，支持暗黑模式和移动端适配。</p>
-                    <div style="margin-top: 10px;">
-                        <span style="color: #563d7c; font-size: 0.8em;">● CSS</span>
-                    </div>
-                    <a href="#" class="repo-link">查看源码 <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- 项目卡片 3 -->
-                <div class="project-card">
-                    <h3>Todo App</h3>
-                    <p>使用 React 和 Firebase 开发的在线待办事项列表。</p>
-                    <div style="margin-top: 10px;">
-                        <span style="color: #61dafb; font-size: 0.8em;">● React</span>
-                    </div>
-                    <a href="#" class="repo-link">查看源码 <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-            </div>
-        </section>
+        <!-- 导航链接按钮 -->
+        <div class="links">
+            <a href="https://github.com/3804445492l" class="btn" target="_blank">
+                GitHub 主页
+            </a>
+            <a href="#" class="btn" onclick="alert('博客正在建设中...')">
+                我的博客
+            </a>
+            <a href="#" class="btn" onclick="alert('请发送邮件到...')">
+                联系我
+            </a>
+            <!-- 你可以复制上面的 <a ...> ... </a> 添加更多按钮 -->
+        </div>
 
         <footer>
-            <p>&copy; 2023 Built with GitHub Pages</p>
+            <p>&copy; 2024 Built with Code</p>
         </footer>
     </div>
 
+    <script>
+        /* --- JS 交互部分 --- */
+        
+        // 打字机特效配置
+        const textElement = document.getElementById('typing-text');
+        const texts = [
+            "一名开发者 💻", 
+            "热爱开源技术 🌐", 
+            "正在学习新知识 📚",
+            "欢迎来到我的网站 ✨"
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50; // 删除速度快一点
+            } else {
+                textElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100; // 输入速度正常
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                // 打完了，暂停一下
+                isDeleting = true;
+                typeSpeed = 2000; 
+            } else if (isDeleting && charIndex === 0) {
+                // 删完了，切换下一句
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // 启动打字机
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
 </body>
 </html>
