@@ -9,11 +9,11 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0f172a; /* 深蓝黑色背景 */
+            background-color: #0f172a;
             color: white;
             font-family: 'Segoe UI', sans-serif;
-            height: 100vh; /* 占满全屏 */
-            overflow: hidden; /* 禁止滚动 */
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,54 +28,45 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: transform 0.4s ease-in-out; /* 切换时的平滑动画 */
+            transition: transform 0.4s ease-in-out;
         }
 
         /* 界面 A: 主页 */
         #screen-home {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             z-index: 1;
-            transform: translateX(0); /* 默认显示 */
+            transform: translateX(0);
         }
 
         /* 界面 B: 详情页 */
         #screen-detail {
             background-color: #000000;
             z-index: 2;
-            transform: translateX(100%); /* 默认藏在屏幕右边 */
+            transform: translateX(100%);
         }
 
-        /* --- 3. 动画控制类 --- */
-        /* 当给详情页加上这个类，它就滑进来了 */
-        .slide-in {
-            transform: translateX(0) !important;
-        }
-        
-        /* 当给主页加上这个类，它就稍微往左退一点 */
-        .slide-out {
-            transform: translateX(-30%);
-            opacity: 0.5;
-        }
+        /* --- 3. 动画控制 --- */
+        .slide-in { transform: translateX(0) !important; }
+        .slide-out { transform: translateX(-30%); opacity: 0.5; }
 
         /* --- 4. 按钮样式 --- */
         .btn-enter {
-            padding: 15px 40px;
+            padding: 15px 50px; /* 按钮稍微宽一点 */
             font-size: 20px;
             font-weight: bold;
             color: white;
-            background-color: #3b82f6; /* 亮蓝色 */
+            background-color: #3b82f6;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
             transition: transform 0.2s;
+            margin-top: 20px; /* 让按钮离上面的文字远一点 */
         }
         
-        .btn-enter:active {
-            transform: scale(0.95); /* 点击缩放效果 */
-        }
+        .btn-enter:active { transform: scale(0.95); }
 
-        /* --- 5. 返回箭头样式 --- */
+        /* --- 5. 返回箭头 --- */
         .back-arrow {
             position: absolute;
             top: 30px;
@@ -91,14 +82,23 @@
             border-radius: 50%;
             transition: background 0.3s;
         }
+        .back-arrow:hover { background: rgba(255, 255, 255, 0.1); color: white; }
 
-        .back-arrow:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+        /* --- 6. 文字样式 --- */
+        h1 { 
+            margin-bottom: 10px; /* 标题下面的间距 */
+            font-size: 2.5rem;
+            letter-spacing: 2px;
         }
 
-        h1 { margin-bottom: 30px; }
-        p { color: #94a3b8; }
+        /* 新增：QQ群小字的样式 */
+        .qq-info {
+            font-size: 1.2rem;     /* 字号稍微小一点 */
+            color: #94a3b8;        /* 浅灰色 */
+            margin-bottom: 40px;   /* 距离下面按钮的距离 */
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
 
     </style>
 </head>
@@ -107,30 +107,31 @@
     <!-- === 界面 1：主页 === -->
     <div id="screen-home" class="screen">
         <h1>ROBLOX GUXUE</h1>
-        <button class="btn-enter" onclick="openDetail()">进入界面</button>
+        
+        <!-- 👇👇👇 请在这里填群号 👇👇👇 -->
+        <!-- 目前是一堆空格 (&nbsp;)，你可以删掉它们填数字 -->
+        <p class="qq-info">QQ群:1074910023</p>
+        
+        <button class="btn-enter" onclick="openDetail()">进入功能面板</button>
     </div>
 
-    <!-- === 界面 2：内容页 === -->
+    <!-- === 界面 2：功能面板 (以后再整) === -->
     <div id="screen-detail" class="screen">
-        <!-- 返回箭头 -->
         <div class="back-arrow" onclick="goBack()">←</div>
         
-        <h1>这里是新界面</h1>
-        <p>点击左上角箭头返回主菜单</p>
+        <h1>功能面板</h1>
+        <p style="color: gray;">(待开发区域...)</p>
     </div>
 
     <script>
-        // 获取两个界面元素
         const homeScreen = document.getElementById('screen-home');
         const detailScreen = document.getElementById('screen-detail');
 
-        // 打开详情页
         function openDetail() {
             detailScreen.classList.add('slide-in');
             homeScreen.classList.add('slide-out');
         }
 
-        // 返回主页
         function goBack() {
             detailScreen.classList.remove('slide-in');
             homeScreen.classList.remove('slide-out');
